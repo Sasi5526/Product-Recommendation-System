@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[15]:
-
-
 import pandas as pd
 import os
 from os  import getcwd
@@ -18,8 +12,6 @@ directory = getcwd()
 
 # # Import the required Pickle files
 
-# In[6]:
-
 
 prod_ranking_model = pickle.load(open(os.path.join(directory,'prod_ranking_model.pkl'),'rb'))
 cust_prod_ranking_model = pickle.load(open(os.path.join(directory,'cust_prod_ranking_model.pkl'),'rb'))
@@ -28,8 +20,6 @@ prod_correlation_model = pickle.load(open(os.path.join(directory,'prod_correlati
 
 
 # # HTML code for displaying Table
-
-# In[7]:
 
 
 # This function structures the HTML code for displaying the table on website
@@ -56,9 +46,6 @@ def html_code_table(prod_df,table_name,file_name,side):
 
 # # Most Popular and Top Selling Products
 
-# In[8]:
-
-
 # This function calls the html_code_table function to create a .html file for Most Popular Products
 def most_popular_table():
     most_popular_prods = prod_ranking_model.sort_values('Popularity_Rank',ascending=True)[['Product','Rate']].head(10).reset_index(drop=True)
@@ -73,9 +60,6 @@ def top_sell_table():
 
 
 # # Customer Frequently Purchased and Purchased the Most Products
-
-# In[9]:
-
 
 # This function calls the html_code_table function to create a .html file for Most Popular Products of a Customer
 def cust_most_popular_table(cust_name):
@@ -94,8 +78,6 @@ def cust_top_sell_table(cust_name):
 
 
 # # Products Customer may Like
-
-# In[10]:
 
 
 # This function performs the below functionality for the input customer
@@ -142,8 +124,6 @@ def recommend_prod_cust(cust_name):
 
 # # Similar Products to Display
 
-# In[19]:
-
 
 # This function performs the below functionality for the input product
 # - get the list of products with similar purchasing pattern and correlation coefficient
@@ -167,14 +147,11 @@ def similar_prods(prod_name):
     
     #print(similar_prods)
     
-    html_code_table(similar_prods,'Similar Products of your selected Product','similarprodtable','left')
+    html_code_table(similar_prods,'Similar Products of the selected Product','similarprodtable','left')
     
     return prod_price
 
 
-# 
-
-# In[12]:
 
 
 @app.route("/")
@@ -214,10 +191,3 @@ def view():
 
 if __name__ == "__main__":
     app.run(debug=True)
-
-
-# In[ ]:
-
-
-
-
