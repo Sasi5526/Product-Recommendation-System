@@ -167,7 +167,7 @@ def similar_prods(prod_name):
     
     #print(similar_prods)
     
-    html_code_table(similar_prods,'Customers who purchased this product also purchased these','similarprodtable','left')
+    html_code_table(similar_prods,'Similar Products of your selected Product','similarprodtable','left')
     
     return prod_price
 
